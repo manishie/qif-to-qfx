@@ -374,9 +374,21 @@ def interactive_mode(scan_dir=None, input_fn=None):
 
 # ── Main ─────────────────────────────────────────────────────────────────────
 
+USAGE = "Usage: qif-to-qfx input1.qif [input2.qif ...] [-o output.qfx] [--no-balance] [--org NAME] [--acctid ID]"
+
+
+def print_usage():
+    print(USAGE)
+    print("\nRun with no arguments for interactive mode.")
+
+
 def main():
     # Parse args (simple, no argparse dependency)
     args = sys.argv[1:]
+
+    if "--help" in args or "-h" in args:
+        print_usage()
+        sys.exit(0)
 
     # Hidden test flag for interactive scan directory
     scan_dir = None
@@ -422,8 +434,7 @@ def main():
         args = args[:idx] + args[idx + 2:]
 
     if len(args) < 1:
-        print("Usage: qif-to-qfx input1.qif [input2.qif ...] [-o output.qfx] [--no-balance] [--org NAME] [--acctid ID]")
-        print("\nRun with no arguments for interactive mode.")
+        print_usage()
         sys.exit(1)
 
     input_paths = args

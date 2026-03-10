@@ -39,3 +39,23 @@ class TestSingleFileMode:
             main()
             expected_output = os.path.join(tmpdir, "test-clean.qfx")
             assert os.path.exists(expected_output)
+
+
+class TestHelpFlag:
+    def test_help_flag_shows_usage(self, capsys):
+        sys.argv = ["qif-to-qfx", "--help"]
+        try:
+            main()
+        except SystemExit as e:
+            assert e.code == 0
+        captured = capsys.readouterr()
+        assert "Usage:" in captured.out
+
+    def test_h_flag_shows_usage(self, capsys):
+        sys.argv = ["qif-to-qfx", "-h"]
+        try:
+            main()
+        except SystemExit as e:
+            assert e.code == 0
+        captured = capsys.readouterr()
+        assert "Usage:" in captured.out
