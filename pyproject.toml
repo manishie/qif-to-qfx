@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "qif-to-qfx"
 version = "0.1.1"
-description = "Convert QIF files to QFX/OFX format for Quicken import"
+description = "Convert QIF files to QFX/OFX format for Quicken and other financial software"
 readme = "README.md"
 license = "MIT"
 requires-python = ">=3.6"

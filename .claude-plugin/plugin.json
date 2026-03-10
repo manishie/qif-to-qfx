@@ -1,0 +1,14 @@
+{
+  "name": "qif-to-qfx",
+  "description": "Convert QIF files to QFX format for Quicken import. Handles PayPal balancing, split stripping, deduplication, and multi-file combine.",
+  "version": "0.1.1",
+  "author": {
+    "name": "Manish Mukherjee",
+    "email": "manish@mukherjee.me"
+  },
+  "homepage": "https://github.com/manishie/qif-to-qfx",
+  "repository": "https://github.com/manishie/qif-to-qfx",
+  "license": "MIT",
+  "category": "finance",
+  "keywords": ["qif", "qfx", "ofx", "quicken", "finance", "converter", "import", "paypal", "banking"]
+}

@@ -1,4 +1,9 @@
-# QIF → QFX Converter for Quicken Mac
+---
+name: qif-to-qfx
+description: Convert QIF files to QFX format for Quicken import. Handles PayPal balancing, split stripping, deduplication, and multi-file combine.
+---
+
+# QIF → QFX Converter for Quicken
 
 ## When to use
 
