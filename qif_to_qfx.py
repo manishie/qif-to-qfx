@@ -3,7 +3,7 @@
 QIF → Clean QFX Converter for Quicken Mac Import
 
 Solves common problems with QIF exports from financial services (PayPal,
-Venmo, banks, etc.) that make them unusable for direct Quicken Mac import:
+banks, etc.) that make them unusable for direct Quicken Mac import:
 
 1. SPLITS: Strips $0 "Fee" split lines that cause Quicken to show "Split"
 2. BALANCE: Optionally generates offsetting entries so the file nets to zero
@@ -48,6 +48,19 @@ def parse_qif(filepath):
     Automatically strips split lines (S/$ prefixed)."""
     with open(filepath, encoding="utf-8") as f:
         content = f.read()
+
+    if "!Type:Invst" in content:
+        print("Error: Investment QIF files (!Type:Invst) are not yet supported. "
+              "This tool handles banking and credit card transactions only.",
+              file=sys.stderr)
+        sys.exit(1)
+
+    # Strip non-transaction sections before parsing
+    content = re.sub(
+        r"(?m)^(!Type:(?:Cat|Class|Memorized)\b.*?)(?=^!Type:|^!Account|\Z)",
+        "", content, flags=re.DOTALL
+    )
+
     content = ensure_account_header(content)
 
     # Split on ^ (standard) or blank lines (Chase-style)
